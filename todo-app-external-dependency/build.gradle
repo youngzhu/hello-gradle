@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+version = 0.2
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.apache.commons:commons-lang3:3.1"
+}
