@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+buildscript {
+    repositories {
+        maven {
+            url  "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.org.akhikhl.gretty:gretty:2.0.0"
+    }
+}
+
+apply plugin: "org.akhikhl.gretty"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'javax.servlet:servlet-api:2.5',
+            'javax.servlet.jsp:jsp-api:2.1'
+    implementation 'javax.servlet:jstl:1.1.2',
+            'taglibs:standard:1.1.2'
+}
+
+bootWar {
+    baseName = 'todo-webapp'
+}
