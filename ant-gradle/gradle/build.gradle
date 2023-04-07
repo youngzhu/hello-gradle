@@ -1,0 +1,32 @@
+ant.importBuild '../ant/build.xml'
+
+init {
+    doFirst {
+        logger.quiet "Deleting the directory '${ant.properties.build}'."
+    }
+
+    doLast {
+        logger.quiet "Starting from a clean slate."
+    }
+}
+
+ext.antBuildDir = '../ant/build'
+ant.properties.build = "$antBuildDir/classes"
+ant.properties.dist = "$antBuildDir/libs"
+
+task sourcesJar(type: Jar) {
+    archiveBaseName = 'my-app'
+    archiveClassifier = 'sources'
+    archiveVersion = ant.properties.version
+    destinationDirectory = file(ant.properties.dist)
+    from new File(ant.properties.src, 'main/java')
+}
+
+dist.dependsOn sourcesJar
+
+// 加不加都一样啊，不知道是不是新版本默认的功能
+// 增量，没变化的task不会重复执行
+//compile {
+//    inputs.dir file(ant.properties.src)
+//    outputs.dir file(ant.properties.build)
+//}
