@@ -1,0 +1,15 @@
+ant.importBuild 'build.xml'
+
+configurations {
+    antCompile
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antCompile 'org.apache.commons:commons-lang3:3.1'
+}
+
+ant.properties.antCompileClasspath = configurations.antCompile.asPath
