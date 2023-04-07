@@ -1,0 +1,23 @@
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':model')
+    testImplementation 'junit:junit:4.11'
+}
+
+test {
+    systemProperty 'items', '20'
+    jvmArgs '-Xms128m', '-Xmx256m'
+
+    // max number of test classes to
+    // execute in a forked test process
+    forkEvery = 5
+    // max number for test process forks
+    maxParallelForks = Runtime.runtime.availableProcessors() / 2
+
+    testLogging {
+        showStandardStreams = true
+    }
+}
