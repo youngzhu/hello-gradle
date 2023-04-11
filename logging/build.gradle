@@ -1,0 +1,6 @@
+def env = project.hasProperty('env') ? project.getProperty('env') : 'local'
+logger.quiet "Loading configuration fro enviroment '$env'."
+
+task log {
+    logger.quiet "log test"
+}
